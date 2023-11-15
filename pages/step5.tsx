@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Active from '../components/steps/active';
 import Done from '../components/steps/done';
 import Todo from '../components/steps/todo';
-import Last from '../components/steps/last';
+import Final from '../components/steps/final';
 
 import JoinSubnet from '../components/join-subnet';
 
@@ -17,7 +17,7 @@ const Test = () => {
             <Done title="Select Parent Network" />
             <Done title="Generate Validators" />
             <Done title="Create subnet" />
-            <Active title="Join the subnet" />
+            <Final title="Join the subnet" />
           </ol>
         </nav>
       </div>

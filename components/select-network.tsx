@@ -2,17 +2,18 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-const SelectNetwork = ({ title, text }) => {
-  const [network, setNetwork] = useState('Mycelium Calibration');
+const SelectNetwork = () => {
+  const [rootNetwork, setNetwork] = useState('Mycelium Calibration');
   const router = useRouter(); // useRouter hook for redirection
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    // Add logic for key generation, address computation, and faucet interaction
-    //
-    // TODO store state
-    //
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
+    // Store data in local storage
+    localStorage.setItem('rootNetwork', JSON.stringify(rootNetwork));
+
+    // Redirect to another page
     router.push('/step3');
   };
 
@@ -28,7 +29,7 @@ const SelectNetwork = ({ title, text }) => {
           </label>
           <select
             className="shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={network}
+            value={rootNetwork}
             onChange={(e) => setNetwork(e.target.value)}
           >
             <option value="Mycelium Calibration">Mycelium Calibration</option>

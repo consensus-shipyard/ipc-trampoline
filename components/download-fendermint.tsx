@@ -4,13 +4,13 @@ const DownloadFendermint = ({ title, text }) => {
   return (
     <div>
       <p class="p-8">
-        <span class="text-sm font-medium text-gray-500">
+        <span class="text-sm font-medium  ">
           The first step downloads the IPC Fendermint stack to the machine where
           you've installed the IPC Trampoline.
         </span>
       </p>
       <p class="p-8">
-        <span class="text-sm font-medium text-gray-500">
+        <span class="text-sm font-medium  ">
           It will be downloaded to ~/ipc-trampoline-workspace.
         </span>
       </p>

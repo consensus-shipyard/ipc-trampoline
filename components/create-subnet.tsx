@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
-const GenerateValidators = ({ title, text }) => {
+const CreateSubnet = () => {
   const [validatorCount, setValidatorCount] = useState(1);
   const [minValidatorStake] = useState(1);
   const [bottomUpCheckPeriod, setBottomUpCheckPeriod] = useState(30);
 
   const handleSubmit = async (event) => {
+    console.log(validatorCount, minValidatorStake, bottomUpCheckPeriod);
     event.preventDefault();
     // Logic for handling form submission
   };
@@ -84,4 +85,4 @@ const GenerateValidators = ({ title, text }) => {
   );
 };
 
-export default GenerateValidators;
+export default CreateSubnet;
