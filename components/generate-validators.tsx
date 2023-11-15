@@ -5,6 +5,8 @@ import KeyPairGenerator from '../components/web3/keypair-generator'; // Adjust t
 const GenerateValidators = ({ title, text }) => {
   const [validatorCount, setValidatorCount] = useState(1);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [hasFunds, setHasFunds] = useState(false); // New state to track funds
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     localStorage.setItem('validatorCount', JSON.stringify(validatorCount));
@@ -46,11 +48,18 @@ const GenerateValidators = ({ title, text }) => {
           </button>
         </form>
         <hr />
-        {isFormSubmitted && <KeyPairGenerator />}
+        {isFormSubmitted && (
+          <KeyPairGenerator setHasFunds={setHasFunds} hasFunds={hasFunds} />
+        )}
         <p className="p-8">
           <Link
             href="/step4"
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            className={`bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ${
+              !hasFunds ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            onClick={(e) => {
+              !hasFunds && e.preventDefault();
+            }}
           >
             Next &gt;
           </Link>

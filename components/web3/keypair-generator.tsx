@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
 import { ethers } from 'ethers';
 
-const KeyPairGenerator = () => {
+const KeyPairGenerator = ({ setHasFunds, hasFunds }) => {
   const [publicAddress, setPublicAddress] = useState('');
   const [balance, setBalance] = useState('0');
 
@@ -16,7 +16,6 @@ const KeyPairGenerator = () => {
   }, []); // Empty dependency array ensures this runs once on mount
 
   useEffect(() => {
-    console.log('IHHIHIHI');
     const web3 = new Web3('https://filecoin-calibration.chainup.net/rpc/v1');
     const generateKeyPair = async () => {
       const accounts = await web3.eth.getAccounts();
@@ -30,6 +29,12 @@ const KeyPairGenerator = () => {
     const updateBalance = async (address) => {
       const balance = await web3.eth.getBalance(address);
       setBalance(web3.utils.fromWei(balance, 'ether'));
+      console.log('balazne', balance);
+      if (
+        web3.utils.fromWei(balance, 'ether') !== web3.utils.fromWei(0, 'ether')
+      ) {
+        setHasFunds(true); // Update parent component when balance is non-zero
+      }
     };
 
     generateKeyPair();
@@ -49,6 +54,7 @@ const KeyPairGenerator = () => {
         <div>
           <p>Public Address: {publicAddress}</p>
           <p>Balance: {balance} ETH</p>
+          {!hasFunds && <p> Use a faucet to add funds</p>}
         </div>
       )}
     </div>
