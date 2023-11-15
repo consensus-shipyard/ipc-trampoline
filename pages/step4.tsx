@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
-import DownloadFendermint from '../components/download-fendermint';
 import Active from '../components/steps/active';
+import Done from '../components/steps/done';
 import Todo from '../components/steps/todo';
 import Last from '../components/steps/last';
+
+import CreateSubnet from '../components/create-subnet';
 
 const Test = () => {
   return (
@@ -11,17 +13,17 @@ const Test = () => {
       <div class="w-1/3">
         <nav aria-label="Progress">
           <ol role="list" class="overflow-hidden">
-            <Active title="Download Stack" />
-            <Todo title="Select Parent Network" />
-            <Todo title="Generate Validators" />
-            <Todo title="Create subnet" />
+            <Done title="Download Stack" />
+            <Done title="Select Parent Network" />
+            <Done title="Generate Validators" />
+            <Active title="Create subnet" />
             <Last title="Join the subnet" />
           </ol>
         </nav>
       </div>
 
       <div class="w-2/3 flex justify-center items-center">
-        <DownloadFendermint />
+        <CreateSubnet />
       </div>
     </div>
   );
