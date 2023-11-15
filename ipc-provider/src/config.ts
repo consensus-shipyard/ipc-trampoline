@@ -3,20 +3,16 @@ import * as fs from 'fs';
 import log from 'loglevel';
 import { newFromString } from '@glif/filecoin-address';
 
-const ABIS_PATH = '../abis/';
-
-const IpcAbis = [
-  'Gateway',
-  'GatewayDiamond',
-  'GatewayGetterFacet',
-  'GatewayManagerFacet',
-  'GatewayRouterFacet',
-  'SubnetActor',
-  'SubnetActorDiamond',
-  'SubnetActorGetterFacet',
-  'SubnetActorManagerFacet',
-  'SubnetRegistry',
-];
+import Gateway from '../abis/Gateway.json';
+import GatewayDiamond from '../abis/GatewayDiamond.json';
+import GatewayGetterFacet from '../abis/GatewayGetterFacet.json';
+import GatewayManagerFacet from '../abis/GatewayManagerFacet.json';
+import GatewayRouterFacet from '../abis/GatewayRouterFacet.json';
+import SubnetActor from '../abis/SubnetActor.json';
+import SubnetActorDiamond from '../abis/SubnetActorDiamond.json';
+import SubnetActorGetterFacet from '../abis/SubnetActorGetterFacet.json';
+import SubnetActorManagerFacet from '../abis/SubnetActorManagerFacet.json';
+import SubnetRegistry from '../abis/SubnetRegistry.json';
 
 export interface Config {
   subnets: Map<string, SubnetConfig>;
@@ -87,15 +83,17 @@ export function newConfigForNetwork(network: string): Config {
 }
 
 export function importABIs() {
-  const abis = new Map<string, any>();
-
-  IpcAbis.forEach((abiName) => {
-    const abiPath = ABIS_PATH + `${abiName}.json`;
-    const abi = JSON.parse(fs.readFileSync(abiPath, 'utf8')).abi;
-    abis.set(abiName, abi);
-  });
-
-  log.debug('Imported IPC contract ABIs');
-
-  return abis;
+  const abiFiles = {
+    Gateway,
+    GatewayDiamond,
+    GatewayGetterFacet,
+    GatewayManagerFacet,
+    GatewayRouterFacet,
+    SubnetActor,
+    SubnetActorDiamond,
+    SubnetActorGetterFacet,
+    SubnetActorManagerFacet,
+    SubnetRegistry,
+  };
+  return abiFiles;
 }

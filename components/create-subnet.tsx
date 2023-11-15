@@ -1,14 +1,17 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import SubnetCreate from '../components/web3/subnet-create';
 
 const CreateSubnet = () => {
   const [validatorCount, setValidatorCount] = useState(1);
   const [minValidatorStake] = useState(1);
   const [bottomUpCheckPeriod, setBottomUpCheckPeriod] = useState(30);
+  const [isCreated, setIsCreated] = useState(false); // state to track button click
 
   const handleSubmit = async (event) => {
     console.log(validatorCount, minValidatorStake, bottomUpCheckPeriod);
     event.preventDefault();
+    setIsCreated(true); // Set the state to true when form is submitted
     // Logic for handling form submission
   };
 
@@ -55,28 +58,34 @@ const CreateSubnet = () => {
         />
         <button
           type="submit"
-          className="  bg-blue-500 hover:bg-blue-700 text-white p-2 rounded button"
+          className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded button"
         >
           Create
         </button>
       </form>
       <hr />
-      <div>
-        <label>Output:</label>
-        <p>
-          Command:{' '}
-          <code>
-            ./bin/ipc-cli subnet create --parent /r230984 --min-validators{' '}
-            {validatorCount} --min-validator-stake {minValidatorStake}{' '}
-            --bottomup-check-period {bottomUpCheckPeriod}
-          </code>
-        </p>
-        {/* IPC command output can be piped here */}
-      </div>
+      {isCreated && ( // Conditional rendering based on isCreated
+        <div>
+          <SubnetCreate />
+          <label>Output:</label>
+          <p>
+            Command:{' '}
+            <code>
+              ./bin/ipc-cli subnet create --parent /r230984 --min-validators{' '}
+              {validatorCount} --min-validator-stake {minValidatorStake}{' '}
+              --bottomup-check-period {bottomUpCheckPeriod}
+            </code>
+          </p>
+          {/* IPC command output can be piped here */}
+        </div>
+      )}
       <p className="p-8">
         <Link
           href="/step5"
-          className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+          className={`bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ${
+            !isCreated ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
+          disabled={!isCreated} // Disable the link if isCreated is false
         >
           Next &gt;
         </Link>

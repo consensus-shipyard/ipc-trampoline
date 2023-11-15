@@ -28,7 +28,7 @@ class Connection {
   }
 
   getContract(contractName: string, address: string): Contract {
-    const abi = contractABIs.get(contractName);
+    const abi = contractABIs[contractName].abi;
 
     if (!abi) {
       throw new Error(`ABI for contract ${contractName} not found.`);

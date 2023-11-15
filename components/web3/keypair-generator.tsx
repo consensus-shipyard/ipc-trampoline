@@ -4,12 +4,24 @@ import { ethers } from 'ethers';
 
 const KeyPairGenerator = ({ setHasFunds, hasFunds }) => {
   const [publicAddress, setPublicAddress] = useState('');
+  const [privateKey, setPrivateKey] = useState('');
   const [balance, setBalance] = useState('0');
+  const [showPrivateKey, setShowPrivateKey] = useState(false);
 
   useEffect(() => {
     const generateKeyPair = () => {
       const wallet = ethers.Wallet.createRandom();
+      console.log('wallet');
+      console.log(wallet.privateKey);
+
       setPublicAddress(wallet.address);
+      setPrivateKey(wallet.privateKey);
+      // Storing private keys in local storage is not recommended for production
+      localStorage.setItem('validator1KeyPair', JSON.stringify(wallet));
+      localStorage.setItem(
+        'validator1KeyPairPK',
+        JSON.stringify(wallet.privateKey)
+      );
     };
 
     generateKeyPair();
@@ -21,6 +33,8 @@ const KeyPairGenerator = ({ setHasFunds, hasFunds }) => {
       const accounts = await web3.eth.getAccounts();
       if (accounts.length > 0) {
         const wallet = web3.eth.accounts.create();
+        console.log(wallet);
+
         setPublicAddress(wallet.address);
         updateBalance(wallet.address);
       }
@@ -29,7 +43,6 @@ const KeyPairGenerator = ({ setHasFunds, hasFunds }) => {
     const updateBalance = async (address) => {
       const balance = await web3.eth.getBalance(address);
       setBalance(web3.utils.fromWei(balance, 'ether'));
-      console.log('balazne', balance);
       if (
         web3.utils.fromWei(balance, 'ether') !== web3.utils.fromWei(0, 'ether')
       ) {
@@ -47,14 +60,31 @@ const KeyPairGenerator = ({ setHasFunds, hasFunds }) => {
 
     return () => clearInterval(interval);
   }, [publicAddress]);
-
+  const togglePrivateKeyDisplay = () => {
+    setShowPrivateKey(!showPrivateKey);
+  };
   return (
     <div>
       {publicAddress && (
         <div>
+          {!hasFunds && (
+            <p>
+              Please use a faucet to add funds to your validator. This page is
+              automatically refreshing your balance and will allow access the
+              next step once your balance is greater than 0.{' '}
+            </p>
+          )}
+          <hr className="p-8" />
           <p>Public Address: {publicAddress}</p>
           <p>Balance: {balance} ETH</p>
-          {!hasFunds && <p> Use a faucet to add funds</p>}
+
+          <button
+            onClick={togglePrivateKeyDisplay}
+            className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded button"
+          >
+            {showPrivateKey ? 'Hide Private Key' : 'Display Private Key'}
+          </button>
+          {showPrivateKey && <p>Private Key: {privateKey}</p>}
         </div>
       )}
     </div>
