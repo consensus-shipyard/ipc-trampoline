@@ -12,6 +12,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@ethersproject/bignumber": "^5.7.0",
+    "@glif/filecoin-address": "^2.0.43",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "ethers": "^6.8.1",

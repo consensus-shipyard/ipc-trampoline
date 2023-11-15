@@ -18,36 +18,38 @@ const GenerateValidators = ({ title, text }) => {
   return (
     <>
       <div className="container mx-auto p-4 max-w-7xl sm:px-6 lg:px-8">
-        <form
-          onSubmit={handleSubmit}
-          className="grid grid-cols-2 gap-4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-          aria-labelledby="validator-form"
-        >
-          <div className="flex items-center">
-            <span className="icon-validator-count mr-2" />{' '}
-            {/* Icon for visual aid */}
-            <label htmlFor="validatorCount">
-              Number of Validators: {validatorCount}
-            </label>
-          </div>
+        <div>
+          <form onSubmit={handleSubmit} aria-labelledby="validator-form">
+            <div className="grid grid-cols-2 gap-4 bg-white rounded px-8 pt-6 pb-8 mb-4">
+              <div className="flex items-center">
+                <span className="icon-validator-count mr-2" />{' '}
+                {/* Icon for visual aid */}
+                <label htmlFor="validatorCount">
+                  Number of Validators: {validatorCount}
+                </label>
+              </div>
 
-          <input
-            type="range"
-            min="1"
-            max="1"
-            value={validatorCount}
-            className="range-slider"
-            onChange={(e) => setValidatorCount(e.target.value)}
-          />
+              <input
+                type="range"
+                min="1"
+                max="1"
+                value={validatorCount}
+                className="range-slider"
+                onChange={(e) => setValidatorCount(e.target.value)}
+              />
+            </div>
 
-          <button
-            type="submit"
-            className="  bg-blue-500 hover:bg-blue-700 text-white p-2 rounded button"
-          >
-            Generate
-          </button>
-        </form>
-        <hr />
+            <div className="gap-4 bg-white rounded px-10 pt-6 pb-8 mb-4">
+              <button
+                type="submit"
+                className="  bg-blue-500 hover:bg-blue-700 text-white p-2 rounded button"
+              >
+                Generate
+              </button>
+            </div>
+          </form>
+        </div>
+        <hr className="p-8" />
         {isFormSubmitted && (
           <KeyPairGenerator setHasFunds={setHasFunds} hasFunds={hasFunds} />
         )}

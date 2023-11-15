@@ -7,10 +7,11 @@ import Last from '../components/steps/last';
 
 const Test = () => {
   return (
-    <div class="flex min-w-full">
-      <div class="w-1/4">
+    <div className="flex min-w-full border-2 border-solid border-gray-400 p-8">
+      <div className="flex-shrink-0">
+        <h2 className="text-xl font-bold p-8 pl-0">IPC Trampoline</h2>
         <nav aria-label="Progress">
-          <ol role="list" class="overflow-hidden">
+          <ol role="list" className="overflow-hidden">
             <Active title="Download Stack" />
             <Todo title="Select Parent Network" />
             <Todo title="Generate Validators" />
@@ -20,7 +21,7 @@ const Test = () => {
         </nav>
       </div>
 
-      <div class="w-3/4 flex justify-center items-center">
+      <div className="flex-grow justify-center items-center">
         <DownloadFendermint />
       </div>
     </div>
