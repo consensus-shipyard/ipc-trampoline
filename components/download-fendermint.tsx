@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const DownloadFendermint = ({ title, text }) => {
   return (
-    <div>
+    <div className="container mx-auto p-4 max-w-7xl sm:px-6 lg:px-8">
       <p class="p-8">
         <span class="text-sm font-medium  ">
           The first step downloads the IPC Fendermint stack to the machine where
