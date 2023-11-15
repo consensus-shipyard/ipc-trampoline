@@ -3,6 +3,9 @@ import { useState } from 'react';
 
 const GenerateValidators = ({ title, text }) => {
   const [validatorCount, setValidatorCount] = useState(1);
+  const [minValidatorStake] = useState(1); // Fixed value for Minimum Validator Stake
+  const [bottomUpCheckPeriod, setBottomUpCheckPeriod] = useState(30); // Default value for Bottom Up Check Period
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Add logic for key generation, address computation, and faucet interaction
@@ -19,19 +22,43 @@ const GenerateValidators = ({ title, text }) => {
           <input
             type="range"
             min="1"
-            max="1"
+            max="1" // Assuming max range for validators, adjust as necessary
             value={validatorCount}
             onChange={(e) => setValidatorCount(e.target.value)}
           />
         </div>
+        <div>
+          <label>Minimum Validator Stake: {minValidatorStake}</label>
+        </div>
+        <div>
+          <label>Bottom Up Check Period (blocks): </label>
+          <input
+            type="number"
+            value={bottomUpCheckPeriod}
+            onChange={(e) => setBottomUpCheckPeriod(e.target.value)}
+          />
+        </div>
         <button
-          type="Generate"
+          type="submit"
           className="mt-4 bg-blue-500 text-white p-2 rounded"
         >
-          Submit
+          Create
         </button>
       </form>
-      <p class="p-8">
+      <hr />
+      <div>
+        <label>Output:</label>
+        <p>
+          Command:{' '}
+          <code>
+            ./bin/ipc-cli subnet create --parent /r230984 --min-validators{' '}
+            {validatorCount} --min-validator-stake {minValidatorStake}{' '}
+            --bottomup-check-period {bottomUpCheckPeriod}
+          </code>
+        </p>
+        {/* IPC command output can be piped here */}
+      </div>
+      <p className="p-8">
         <Link
           href="/step4"
           className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
