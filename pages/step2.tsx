@@ -9,8 +9,9 @@ import SelectNetwork from '../components/select-network';
 
 const Test = () => {
   return (
-    <div className="flex min-w-full">
-      <div className="w-1/4">
+    <div class="flex min-w-full border-2 border-solid border-gray-400 p-8">
+      <div class="flex-shrink-0">
+        <h2 className="text-xl font-bold p-8 pl-0">IPC Trampoline</h2>
         <nav aria-label="Progress">
           <ol role="list" className="overflow-hidden">
             <Done title="Download Stack" />
@@ -22,7 +23,7 @@ const Test = () => {
         </nav>
       </div>
 
-      <div className="w-3/4 flex justify-center items-center">
+      <div class="flex-grow justify-center items-center">
         <SelectNetwork />
       </div>
     </div>

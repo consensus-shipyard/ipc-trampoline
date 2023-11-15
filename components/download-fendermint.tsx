@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const DownloadFendermint = ({ title, text }) => {
   return (
-    <div classNameName="container mx-auto p-4 max-w-7xl sm:px-6 lg:px-8">
+    <div className="container mx-auto p-4 max-w-7xl sm:px-6 lg:px-8">
       <p className="p-8">
         <span className="text-sm font-medium  ">
           The first step downloads the IPC Fendermint stack to the machine where
@@ -17,7 +17,7 @@ const DownloadFendermint = ({ title, text }) => {
       <p className="p-8">
         <Link
           href="/step2"
-          classNameName="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+          className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
         >
           Next &gt;
         </Link>
