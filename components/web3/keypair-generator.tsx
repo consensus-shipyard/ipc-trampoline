@@ -28,7 +28,8 @@ const KeyPairGenerator = ({ setHasFunds, hasFunds }) => {
   }, []); // Empty dependency array ensures this runs once on mount
 
   useEffect(() => {
-    const web3 = new Web3('https://filecoin-calibration.chainup.net/rpc/v1');
+    const rpcUrl = JSON.parse(localStorage.getItem('rootNetworkRPC'));
+    const web3 = new Web3(rpcUrl);
     const generateKeyPair = async () => {
       const accounts = await web3.eth.getAccounts();
       if (accounts.length > 0) {

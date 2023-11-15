@@ -10,8 +10,17 @@ const SelectNetwork = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const rpcUrls = {
+      Calibrationnet: 'https://api.calibration.node.glif.io/rpc/v1',
+      'Mycelium Calibration': 'https://api.mycelium.calibration.node.glif.io/',
+    };
+
     // Store data in local storage
     localStorage.setItem('rootNetwork', JSON.stringify(rootNetwork));
+    localStorage.setItem(
+      'rootNetworkRPC',
+      JSON.stringify(rpcUrls[rootNetwork])
+    );
 
     // Redirect to another page
     router.push('/step3');
