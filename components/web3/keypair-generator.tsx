@@ -29,6 +29,7 @@ const KeyPairGenerator = ({ setHasFunds, hasFunds }) => {
 
   useEffect(() => {
     const rpcUrl = JSON.parse(localStorage.getItem('rootNetworkRPC'));
+    console.log(rpcUrl);
     const web3 = new Web3(rpcUrl);
     const generateKeyPair = async () => {
       const accounts = await web3.eth.getAccounts();

@@ -11,8 +11,8 @@ const SelectNetwork = () => {
     e.preventDefault();
 
     const rpcUrls = {
-      Calibrationnet: 'https://api.calibration.node.glif.io/rpc/v1',
-      'Mycelium Calibration': 'https://api.mycelium.calibration.node.glif.io/',
+      calibration: 'https://api.calibration.node.glif.io/rpc/v1',
+      mycelium: 'https://api.mycelium.calibration.node.glif.io/',
     };
 
     // Store data in local storage
@@ -41,8 +41,8 @@ const SelectNetwork = () => {
             value={rootNetwork}
             onChange={(e) => setNetwork(e.target.value)}
           >
-            <option value="Mycelium Calibration">Mycelium Calibration</option>
-            <option value="Calibrationnet">Calibrationnet</option>
+            <option value="mycelium">Mycelium Calibration</option>
+            <option value="calibration">Calibrationnet</option>
           </select>
         </div>
         <button
