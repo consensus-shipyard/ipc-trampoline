@@ -1,11 +1,14 @@
 import Link from 'next/link';
 import { useState } from 'react';
+import KeyPairGenerator from '../components/web3/keypair-generator'; // Adjust the import path as necessary
 
 const GenerateValidators = ({ title, text }) => {
   const [validatorCount, setValidatorCount] = useState(1);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const handleSubmit = async (event) => {
     event.preventDefault();
     localStorage.setItem('validatorCount', JSON.stringify(validatorCount));
+    setIsFormSubmitted(true);
 
     // Add logic for key generation, address computation, and faucet interaction
   };
@@ -43,15 +46,7 @@ const GenerateValidators = ({ title, text }) => {
           </button>
         </form>
         <hr />
-        <div>
-          <label>Output:</label>
-          <p>
-            <code>
-              Generate address: 0x0000000000000000000000000000000000000000 (5
-              coins)
-            </code>
-          </p>
-        </div>
+        {isFormSubmitted && <KeyPairGenerator />}
         <p className="p-8">
           <Link
             href="/step4"
