@@ -5,9 +5,13 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { CoinType, newDelegatedEthAddress } from '@glif/filecoin-address';
 
 const JoinSubnet = () => {
-  const [output, setOutput] = useState(''); // State to store output message
+  const [output, setOutput] = useState('');
+  const [isJoining, setIsJoining] = useState(false); // New state to track if joining is in progress
 
   const joinSubnet = async () => {
+    setIsJoining(true); // Disable the button and show intermediate message
+    setOutput('Joining Subnet...');
+
     const ipcProviderName = JSON.parse(localStorage.getItem('rootNetwork'));
     let provider = IpcProvider.newForNetwork(ipcProviderName);
 
@@ -19,16 +23,22 @@ const JoinSubnet = () => {
       localStorage.getItem('subnetActorAddress')
     );
 
-    const tx = await provider.JoinSubnet(
-      SubnetID.newFromParent(
-        SubnetID.newRoot(314159),
-        newDelegatedEthAddress(subnetActorAddress, CoinType.TEST)
-      ),
-      BigNumber.from(2000000000),
-      BigNumber.from(2000000000)
-    );
+    try {
+      const tx = await provider.JoinSubnet(
+        SubnetID.newFromParent(
+          SubnetID.newRoot(314159),
+          newDelegatedEthAddress(subnetActorAddress, CoinType.TEST)
+        ),
+        BigNumber.from(2000000000),
+        BigNumber.from(2000000000)
+      );
 
-    setOutput(`Output: ${tx}`); // Update output state with the transaction result
+      setOutput(`Output: ${tx}`); // Update output state with the transaction result
+    } catch (error) {
+      setOutput(`Error: ${error.message}`); // In case of an error, update the output accordingly
+    }
+
+    setIsJoining(false); // Re-enable the button after operation is complete
   };
 
   return (
@@ -37,9 +47,9 @@ const JoinSubnet = () => {
         <p className="p-8">Join the subnet</p>
         <button
           onClick={joinSubnet}
-          disabled={!!output} // Disable the button if output is not empty
+          disabled={isJoining} // Disable the button when isJoining is true
           className={`bg-blue-500 hover:bg-blue-700 text-white p-2 rounded button ${
-            output ? 'opacity-50 cursor-not-allowed' : ''
+            isJoining ? 'opacity-50 cursor-not-allowed' : ''
           }`}
         >
           Join
