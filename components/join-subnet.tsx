@@ -9,9 +9,9 @@ const JoinSubnet = ({ title, text }) => {
   };
 
   return (
-    <div className="container mx-auto p-4 max-w-7xl sm:px-6 lg:px-8">
-      <div className="space-y-6 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <p class="p-8">Join the subnet</p>
+    <div classNameName="container mx-auto p-4 max-w-7xl sm:px-6 lg:px-8">
+      <div classNameName="space-y-6 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <p className="p-8">Join the subnet</p>
       </div>
     </div>
   );

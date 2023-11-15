@@ -47,7 +47,7 @@ const GenerateValidators = ({ title, text }) => {
             Generate
           </button>
         </form>
-        <hr />
+        <hr className="p-8" />
         {isFormSubmitted && (
           <KeyPairGenerator setHasFunds={setHasFunds} hasFunds={hasFunds} />
         )}

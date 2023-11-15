@@ -9,10 +9,10 @@ import JoinSubnet from '../components/join-subnet';
 
 const Test = () => {
   return (
-    <div class="flex min-w-full">
-      <div class="w-1/4">
+    <div className="flex min-w-full">
+      <div className="w-1/4">
         <nav aria-label="Progress">
-          <ol role="list" class="overflow-hidden">
+          <ol role="list" className="overflow-hidden">
             <Done title="Download Stack" />
             <Done title="Select Parent Network" />
             <Done title="Generate Validators" />
@@ -22,7 +22,7 @@ const Test = () => {
         </nav>
       </div>
 
-      <div class="w-3/4 flex justify-center items-center">
+      <div className="w-3/4 flex justify-center items-center">
         <JoinSubnet />
       </div>
     </div>
