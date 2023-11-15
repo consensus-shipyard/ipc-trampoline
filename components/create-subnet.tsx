@@ -19,7 +19,7 @@ const CreateSubnet = () => {
     <div className="container mx-auto p-4 max-w-7xl sm:px-6 lg:px-8">
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-2 gap-4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="grid grid-cols-2 gap-4 bg-white rounded px-8 pt-6 pb-8 mb-4"
         aria-labelledby="validator-form"
       >
         <div className="flex items-center">

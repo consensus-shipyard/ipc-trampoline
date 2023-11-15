@@ -68,23 +68,27 @@ const KeyPairGenerator = ({ setHasFunds, hasFunds }) => {
       {publicAddress && (
         <div>
           {!hasFunds && (
-            <p>
-              Please use a faucet to add funds to your validator. This page is
-              automatically refreshing your balance and will allow access the
-              next step once your balance is greater than 0.{' '}
-            </p>
+            <>
+              <p>Please use a faucet to add funds to your validator(s).</p>
+              <p className="pt-4">
+                This page is automatically refreshing your balance and will
+                allow access the next step once your balance is greater than 0.
+              </p>
+            </>
           )}
-          <hr className="p-8" />
-          <p>Public Address: {publicAddress}</p>
-          <p>Balance: {balance} ETH</p>
-
+          <div className="p-8" />
+          <p>
+            Validator Address1: {publicAddress} ({balance} coins)
+            &nbsp;&nbsp;&nbsp;
+          </p>
+          {/*
           <button
             onClick={togglePrivateKeyDisplay}
-            className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded button"
-          >
+           className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
             {showPrivateKey ? 'Hide Private Key' : 'Display Private Key'}
           </button>
           {showPrivateKey && <p>Private Key: {privateKey}</p>}
+          */}
         </div>
       )}
     </div>

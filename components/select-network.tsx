@@ -21,14 +21,14 @@ const SelectNetwork = () => {
     <div className="container mx-auto p-4 max-w-7xl sm:px-6 lg:px-8">
       <form
         onSubmit={handleSubmit}
-        className="space-y-6 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="space-y-6 bg-white rounded px-8 pt-6 pb-8 mb-4"
       >
         <div>
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Select the root network:
           </label>
           <select
-            className="shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
             value={rootNetwork}
             onChange={(e) => setNetwork(e.target.value)}
           >
